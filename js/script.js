@@ -15,13 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (btnTop) {
         // Mostra o botão ao rolar a página para baixo
-        window.onscroll = function() {
+        window.addEventListener('scroll', () => {
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
                 btnTop.style.display = "block";
             } else {
                 btnTop.style.display = "none";
             }
-        };
+        });
 
         // Rola suavemente para o topo ao clicar
         btnTop.addEventListener("click", () => {
