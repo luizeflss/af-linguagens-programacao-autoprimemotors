@@ -1,0 +1,120 @@
+/*
+Projeto: AutoPrime Motors
+Disciplina: Linguagens de Programação
+Professor: Abimael de Oliveira
+Alunos: Luiz Eduardo Ferreira Lopes Silva (RA: 250695) e Luan Gomes Marques (RA: 251501)
+Data de Entrega: 07/06/2026
+*/
+
+/* 1. VARIÁVEIS (:root) e RESET BÁSICO */
+:root {
+    --bg-color: #f8f9fa;
+    --text-main: #212529;
+    --text-muted: #6c757d;
+    --accent-color: #d90429; /* Racing Red industrial */
+    --dark-bg: #1a1a1d;      /* Fundo escuro industrial */
+    --font-primary: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Utilitários Customizados */
+.bg-industrial { background-color: var(--dark-bg) !important; }
+.text-accent { color: var(--accent-color) !important; }
+.bg-accent { background-color: var(--accent-color) !important; }
+.divider { width: 60px; height: 4px; border-radius: 2px; }
+
+/* 2. LAYOUT COM FLEXBOX (Locais exigidos: Rodapé e alinhamento interno dos cards) */
+.footer-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* 3. EFEITOS VISUAIS OBRIGATÓRIOS (Hover, Scale, Transition) */
+
+/* Preparação da imagem dentro do card */
+.img-wrapper {
+    overflow: hidden; /* Mantém a imagem dentro dos limites ao dar zoom */
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+
+.img-wrapper img {
+    /* Efeito 1: Transição suave na imagem base */
+    transition: transform 0.5s ease;
+    object-fit: cover;
+    height: 240px;
+    width: 100%;
+}
+
+/* Classe base para os cards que terão efeito visual */
+.js-card-hover {
+    /* Efeito 2: Transição suave no deslocamento vertical do CSS */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito 3: Hover levantando o card e dando zoom na imagem (Escala) */
+.js-card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.js-card-hover:hover .img-wrapper img {
+    transform: scale(1.08); /* Escala da imagem ao passar o mouse */
+}
+
+/* Destaque via JavaScript (Adicionado via script.js) */
+.js-highlight-active {
+    border: 2px solid var(--accent-color) !important;
+    box-shadow: 0 0 20px rgba(217, 4, 41, 0.2) !important;
+}
+
+/* Botão Voltar ao Topo */
+#btnTop {
+    display: none; /* Oculto por padrão, ativado via JS */
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: var(--accent-color);
+    color: white;
+    cursor: pointer;
+    padding: 12px 18px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#btnTop:hover {
+    background-color: #1a1a1d;
+    transform: scale(1.1);
+}
+
+/* Responsividade de ajuste do Navbar */
+@media (max-width: 768px) {
+    .footer-flex {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .footer-academic {
+        text-align: center !important;
+    }
+}
